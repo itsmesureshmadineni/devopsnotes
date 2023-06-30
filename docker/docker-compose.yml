@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  redis:
+    image: redis
+
+
+  db:
+    image: postgres:9.4
+
+
+  vote:
+    image: votingapp
+    ports:
+      - 8081:80
+    links:
+      - redis
+
+  result:
+    image: resultapp
+    ports:
+      - 8082:80
+    links:
+      - db
+
